@@ -11,7 +11,7 @@ const VideoTrimmer = () => {
   const handleLeftButtonMove = (_, gestureState) => {
     const newPosition = videoPosition + gestureState.dx;
     const newLength = videoLength - gestureState.dx;
-    if (newPosition >= 0 && newLength <= videoWidth && newPosition + newLength <= trackWidth) {
+    if (newPosition >= 0 && newLength <= videoWidth && newPosition + newLength <= trackWidth && newPosition <= position + length) {
       setVideoPosition(newPosition);
       setVideoLength(newLength);
     }
@@ -19,7 +19,7 @@ const VideoTrimmer = () => {
 
   const handleRightButtonMove = (_, gestureState) => {
     const newLength = videoLength + gestureState.dx;
-    if (videoPosition + newLength <= trackWidth && newLength <= videoWidth) {
+    if (videoPosition + newLength <= trackWidth && newLength <= videoWidth && newLength > 0) {
       setVideoLength(newLength);
     }
   };
